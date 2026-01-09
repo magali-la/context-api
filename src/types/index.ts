@@ -26,3 +26,12 @@ export interface TodoDispatchContextTypes {
 export interface TodoItemProps {
     todo: Todo;
 }
+
+// types for filters
+export type Filters = 'all' | 'active' | 'completed';
+
+// FilterContext type 
+export interface FilterContextType {
+    filter: Filters;
+    setFilter: (filter: Filters) => void;
+}
