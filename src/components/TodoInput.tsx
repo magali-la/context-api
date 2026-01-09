@@ -1,7 +1,11 @@
-import { useState } from "react"
+import { useContext, useState } from "react"
+import { TodoDispatchContext } from "../contexts/TodoContext";
 
 export default function TodoInput() {
     const [input, setInput] = useState('');
+
+    // get dispatch
+    const { addTodo } = useContext(TodoDispatchContext)!;
 
     // handler for input
     function handleInput(event: React.ChangeEvent<HTMLInputElement>) {
@@ -10,6 +14,10 @@ export default function TodoInput() {
 
     function handleAdd() {
         console.log('Adding a todo item:', input)
+        // use dispatch action ADD_TODO and check to make sure it isn't empty
+        if(input.length !== 0) addTodo(input);
+        // clear the input field
+        setInput('');
     }
 
     return (
