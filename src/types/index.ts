@@ -21,3 +21,8 @@ export interface TodoDispatchContextTypes {
     editTodo: (id: number, newInput: string) => void;
     clearCompleted: () => void;
 }
+
+// props for TodoItem
+export interface TodoItemProps {
+    todo: Todo;
+}

@@ -1,5 +1,6 @@
 import './App.css'
 import TodoInput from './components/TodoInput'
+import TodoList from './components/TodoList'
 
 function App() {
 
@@ -19,8 +20,7 @@ function App() {
         {/* filters */}
 
         {/* list w empty state */}
-        
-
+        <TodoList />
       </div>
     </div>
   )
