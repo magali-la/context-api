@@ -1,4 +1,5 @@
 import './App.css'
+import FilterButtons from './components/FilterButtons'
 import TodoInput from './components/TodoInput'
 import TodoList from './components/TodoList'
 
@@ -18,7 +19,7 @@ function App() {
           <TodoInput/>
         </section>
         {/* filters */}
-
+        <FilterButtons/>
         {/* list w empty state */}
         <TodoList />
       </div>
