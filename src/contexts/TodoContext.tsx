@@ -1,4 +1,4 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useEffect, useReducer } from "react";
 import type { Todo, TodoContextType, TodoDispatchContextTypes } from "../types";
 
 // create two contexts - one for the data and one for the functions to manipulate the data
@@ -52,8 +52,20 @@ export function todoReducer(state: Todo[], action: any): Todo[] {
 
 // Provider for TodoContext
 export function TodoProvider({ children }: { children: React.ReactNode }) {
-    // useReducer to manage state of the todos array with the dispatch functions - the default is set to an empty array
-    const [todos, dispatch] = useReducer(todoReducer, []);
+    // useReducer to manage state of the todos array with the dispatch functions - the default is set to an empty array, set initializer function to retrieve from local storage
+    const [todos, dispatch] = useReducer(todoReducer, [], () => {
+        const storedTodos = localStorage.getItem('todos');
+        if (storedTodos) {
+            return JSON.parse(storedTodos);
+        } else {
+            return [];
+        }
+    });
+
+    // save anything to local w useEffect if todos change
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos));
+    }, [todos])
 
     // Dispatch action ADD_TODO
     function addTodo(text: string) {
