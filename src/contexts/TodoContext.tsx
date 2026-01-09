@@ -136,10 +136,10 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
 
     return (
         // wrap the contexts around children which is App 
-        <TodoContext value={value}>
-            <TodoDispatchContext value={dispatchValue}>
+        <TodoContext.Provider value={value}>
+            <TodoDispatchContext.Provider value={dispatchValue}>
                 {children}
-            </TodoDispatchContext>
-        </TodoContext>
+            </TodoDispatchContext.Provider>
+        </TodoContext.Provider>
     )
 }
