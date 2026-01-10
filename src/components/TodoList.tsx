@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { TodoContext } from "../contexts/TodoContext"
+import { TodoContext, TodoDispatchContext } from "../contexts/TodoContext"
 import TodoItem from "./TodoItem";
 import { FilterContext } from "../contexts/FilterContext";
 
@@ -9,6 +9,9 @@ export default function TodoList() {
 
     // import filters to use a new value to map by each filter selected
     const { filter } = useContext(FilterContext)!;
+
+    // import clear completed for conditional render
+    const { clearCompleted } = useContext(TodoDispatchContext)!;
 
     // filter the matches from todos array of all tasks - determine whaat the condition is, if active then completed should be false and keep those ones
     const filteredTodos = todos.filter(todo => {
@@ -32,6 +35,10 @@ export default function TodoList() {
                     todo={todo}
                 />
             ))}
+            {/* show clear completed button if there's one completed task in the list of todos - use some method to check if even 1 exists with completed true*/}
+            {todos.some(todo => todo.completed === true) && (
+                <button className="bg-green-300!" onClick={clearCompleted}>Clear completed todos</button>
+            )}
         </div>
     )
 }
