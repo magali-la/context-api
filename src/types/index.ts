@@ -35,3 +35,11 @@ export interface FilterContextType {
     filter: Filters;
     setFilter: (filter: Filters) => void;
 }
+
+export type Themes = 'light' | 'dark'
+
+// ThemeContext type
+export interface ThemeContextType {
+    theme: Themes;
+    toggleTheme: () => void;
+}
